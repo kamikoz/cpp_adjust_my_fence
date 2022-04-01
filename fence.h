@@ -8,13 +8,10 @@ struct optimalSides {
 
 class Fence {
     int length;
-    struct optimalSides sidesForMaxField;
+    struct optimalSides sidesForMaxArea;
 
     public:
     Fence(int);
-    struct optimalSides getSidesForMaxField();
+    struct optimalSides getSidesForMaxArea();
     void drawFence();
-
-    private:
-    int countField();
 };
