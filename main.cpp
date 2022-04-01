@@ -1,6 +1,7 @@
 #include <iostream>
 
+using namespace std;
 int main() {
-    std::cout << "Adjust My Fence!";
+    cout << "Adjust My Fence!";
     return 0;
 }
