@@ -28,7 +28,7 @@ void Fence::optimizeForMaxArea() {
         this->sides.sideY = this->length - 2 * this->sides.sideX;
     }
     
-    this->isOptimizedForMaxArea = true;
+    this->sides.isOptimizedForMaxArea = true;
 }
 
 struct sides Fence::getSides() {
@@ -40,11 +40,11 @@ void Fence::drawFence() {
 }
 
 std::string Fence::getResultOfOptimizingForMaxArea() {
-    if (!this->isOptimizedForMaxArea) {
+    if (!this->sides.isOptimizedForMaxArea) {
         return "The fence has been not optimized for max area.";
     } else {
-        return "The fence has been optimized for max area and its sides are: 2 x " +  
-        std::to_string(this->getSides().sideX) + " and " + std::to_string(this->getSides().sideY);
+        return "The fence has been optimized for max area and its sides are: a = " +  
+        std::to_string(this->getSides().sideX) + " and b = " + std::to_string(this->getSides().sideY);
     }
 }
 

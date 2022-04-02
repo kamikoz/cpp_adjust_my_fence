@@ -1,11 +1,11 @@
 struct sides {
     int sideX, sideY;
+    bool isOptimizedForMaxArea;
 };
 
 class Fence {
     int length;
     struct sides sides;
-    bool isOptimizedForMaxArea;
 
     public:
     Fence(int);
