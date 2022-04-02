@@ -3,12 +3,12 @@
 #include <string>
 #include <math.h>
 
-Fence::Fence(int lenght) {
-    if (length < 3) {
+Fence::Fence(int fenceLength) {
+    if (fenceLength < 3) {
         throw std::invalid_argument("Length of the fence cannot be less than 3");
     }
 
-    this->length = lenght;
+    this->length = fenceLength;
 }
 
 //Lenght of the fence where one side is the infinite wall we can describe as: 2*x + y = l, so y = l-2*x.
@@ -107,9 +107,9 @@ std::string Fence::getFenceDraw() {
 
 std::string Fence::getResultOfOptimizingForMaxArea() {
     if (!this->sides.isOptimizedForMaxArea) {
-        return "\nThe fence has been not optimized for max area.";
+        return "The fence has been not optimized for max area.";
     } else {
-        return "\nThe fence has been optimized for max area and its sides are: a = " +  
+        return "The fence has been optimized for max area and its sides are: a = " +  
         std::to_string(this->getSides().sideX) + " and b = " + std::to_string(this->getSides().sideY);
     }
 }

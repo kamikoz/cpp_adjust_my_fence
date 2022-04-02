@@ -18,7 +18,7 @@ int main() {
         Fence fence(fenceLength);
         fence.optimizeForMaxArea();
         std::cout << fence.getFenceDraw();
-        std::cout << fence.getResultOfOptimizingForMaxArea();
+        std::cout << std::endl << fence.getResultOfOptimizingForMaxArea();
     }
     catch(const std::exception& e)
     {
