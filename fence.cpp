@@ -3,8 +3,6 @@
 #include <string>
 #include <math.h>
 
-using namespace std;
-
 Fence::Fence(int lenght) {
     this->length = lenght;
 }
@@ -19,7 +17,7 @@ Fence::Fence(int lenght) {
 //Second side of the fence will be: y = l-2*x, where x is the first side.
 void Fence::optimizeForMaxArea() {
     if (this->length < 3) {
-        throw invalid_argument("Length of the fence cannot be less than 3");
+        throw std::invalid_argument("Length of the fence cannot be less than 3");
     }
 
     if (this->length == 3) {
@@ -41,45 +39,45 @@ void Fence::drawFence() {
 //TODO: implement a function to draw proportions of the optimal fence in console using dots or specials chars.
 }
 
-string Fence::getResultOfOptimizingForMaxArea() {
+std::string Fence::getResultOfOptimizingForMaxArea() {
     if (!this->isOptimizedForMaxArea) {
         return "The fence has been not optimized for max area.";
     } else {
         return "The fence has been optimized for max area and its sides are: 2 x " +  
-        to_string(this->getSides().sideX) + " and " + to_string(this->getSides().sideY);
+        std::to_string(this->getSides().sideX) + " and " + std::to_string(this->getSides().sideY);
     }
 }
 
 int Fence::getUserConsoleValidLength() {
     float number;
     bool isInt;
-    string value;
+    std::string value;
 
-    cout << endl << "Enter the length of the fence (must be integer): ";
+    std::cout << std::endl << "Enter the length of the fence (must be integer): ";
 
     do {
         try {
-            getline(cin, value);
+            std::getline(std::cin, value);
             number = stof(value);
 
             if (number < 3) {
-                throw invalid_argument("length cannot be less than 3");
+                throw std::invalid_argument("length cannot be less than 3");
             }
             
             //check if number is float
             float roundNumber = floor(number);
             if (roundNumber != number) {
-                throw invalid_argument("length cannot be a fraction");
+                throw std::invalid_argument("length cannot be a fraction");
             } else {
                 isInt = true;
                 break;
             }
         }
-        catch (invalid_argument& e) { 
-            cout << "ERROR: please enter a integer number: " << e.what() << ": ";
+        catch (std::invalid_argument& e) { 
+            std::cout << "ERROR: please enter a integer number: " << e.what() << ": ";
         }
     } while (!isInt);
     
-    cout << endl << "Length of the fence is: " << number << endl;
+    std::cout << std::endl << "Length of the fence is: " << number << std::endl;
     return static_cast<int>(number);
 }

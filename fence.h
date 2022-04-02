@@ -1,7 +1,3 @@
-#include <iostream>
-
-using namespace std;
-
 struct sides {
     int sideX, sideY;
 };
@@ -16,7 +12,7 @@ class Fence {
     struct sides getSides();
     void optimizeForMaxArea();
     void drawFence();
-    string getResultOfOptimizingForMaxArea();
+    std::string getResultOfOptimizingForMaxArea();
 
     static int getUserConsoleValidLength();
 };
