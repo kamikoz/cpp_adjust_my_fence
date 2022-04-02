@@ -1,8 +1,5 @@
 #include <iostream>
 #include "fence.h"
-#include <limits>
-#include <string>
-#include <math.h>
 
 using namespace std;
 
