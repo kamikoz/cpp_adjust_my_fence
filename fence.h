@@ -11,7 +11,7 @@ class Fence {
     Fence(int);
     struct sides getSides();
     void optimizeForMaxArea();
-    void drawFence();
+    std::string getFenceDraw();
     std::string getResultOfOptimizingForMaxArea();
 
     static int getUserConsoleValidLength();

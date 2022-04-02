@@ -35,15 +35,81 @@ struct sides Fence::getSides() {
     return this->sides;
 }
 
-void Fence::drawFence() {
-//TODO: implement a function to draw proportions of the optimal fence in console using dots or specials chars.
+std::string Fence::getFenceDraw() {
+    char rightTopCorner = 187;
+    char rightBottomCorner = 188;
+
+    char leftTopCorner = 201;
+    char leftBottomCorner = 200;
+
+    char verticalLine = 186;
+    char horizontalLine = 205;
+
+    std::string fenceDraw = "\n";
+    struct sides sides = this->getSides();
+
+    if (!sides.isOptimizedForMaxArea) {
+        return "The fence has been not optimized for max area.";
+    }
+
+    int sizeX = this->getSides().sideX;
+    int sizeY = this->getSides().sideY;
+
+    //To draw a very small fence
+    if (sizeY <= 2 || sizeX <= 2) {
+        sizeY *= 4;
+        sizeX *= 4;
+    }
+
+    //to draw a very big fence
+    if (sizeY > 20) {
+        float proportion = (float)sizeY / 20;
+        sizeY = 20;
+        sizeX = round(sizeX / proportion);
+    }
+
+    int doubleSizeX = 2 * sizeX;
+
+    //Loop (i) decides how many raws program draws and how many ║ are there (this is sizeY of the fence).
+    //Loop (j) decides how many columns program draws and how many ═ or " " are there (this is sizeX of the fence). 
+    //Because ║ takes around 2 more space than ═, we need to duplicate loop (j) iterator.
+    for (int i = 0; i < sizeY; i++)
+    {
+        for (int j = 0; j < doubleSizeX; j++){
+            if (j == doubleSizeX - 1) {
+                if (i == 0) {
+                    fenceDraw += rightTopCorner;
+                    fenceDraw += "\n";
+                } else if (i == ceil(sizeY / 2)) {
+                    fenceDraw += verticalLine;
+                    fenceDraw += " b = " + std::to_string(this->getSides().sideY);
+                    fenceDraw += "\n";
+                } else if (i == sizeY - 1) {
+                    fenceDraw += rightBottomCorner;
+                    fenceDraw += "\n";
+                } else {
+                    fenceDraw += verticalLine;
+                    fenceDraw += "\n";
+                }
+            } else {
+                if (i == 0 || i == sizeY - 1) {
+                    fenceDraw += horizontalLine;
+                } else {
+                    fenceDraw += " ";
+                }
+            }
+        }
+    }
+
+    fenceDraw += "a = " + std::to_string(this->getSides().sideX) + "\n";
+    return fenceDraw;
 }
 
 std::string Fence::getResultOfOptimizingForMaxArea() {
     if (!this->sides.isOptimizedForMaxArea) {
-        return "The fence has been not optimized for max area.";
+        return "\nThe fence has been not optimized for max area.";
     } else {
-        return "The fence has been optimized for max area and its sides are: a = " +  
+        return "\nThe fence has been optimized for max area and its sides are: a = " +  
         std::to_string(this->getSides().sideX) + " and b = " + std::to_string(this->getSides().sideY);
     }
 }
@@ -64,7 +130,7 @@ int Fence::getUserConsoleValidLength() {
                 throw std::invalid_argument("length cannot be less than 3");
             }
             
-            //check if number is float
+            //check if number is not integer (fraction)
             float roundNumber = floor(number);
             if (roundNumber != number) {
                 throw std::invalid_argument("length cannot be a fraction");
