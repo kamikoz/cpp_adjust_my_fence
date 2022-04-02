@@ -2,16 +2,21 @@
 
 using namespace std;
 
-struct optimalSides {
-    int sideA, sideB;
+struct sides {
+    int sideX, sideY;
 };
 
 class Fence {
     int length;
-    struct optimalSides sidesForMaxArea;
+    struct sides sides;
+    bool isOptimizedForMaxArea;
 
     public:
     Fence(int);
-    struct optimalSides getSidesForMaxArea();
+    struct sides getSides();
+    void optimizeForMaxArea();
     void drawFence();
+    string getResultOfOptimizingForMaxArea();
+
+    static int getUserConsoleValidLength();
 };
