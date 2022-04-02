@@ -12,11 +12,19 @@ int main() {
     } while(userChoice != "RUN");
 
     int fenceLength = Fence::getUserConsoleValidLength();
-    Fence fence(fenceLength);
-    fence.optimizeForMaxArea();
-    std::cout << fence.getFenceDraw();
-    std::cout << fence.getResultOfOptimizingForMaxArea();
 
+    try
+    {
+        Fence fence(fenceLength);
+        fence.optimizeForMaxArea();
+        std::cout << fence.getFenceDraw();
+        std::cout << fence.getResultOfOptimizingForMaxArea();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
     std::cout << std::endl << "Thank you for using Adjust My Fence. Bye!" << std::endl;
     return 0;
 }

@@ -4,6 +4,10 @@
 #include <math.h>
 
 Fence::Fence(int lenght) {
+    if (length < 3) {
+        throw std::invalid_argument("Length of the fence cannot be less than 3");
+    }
+
     this->length = lenght;
 }
 
@@ -16,10 +20,6 @@ Fence::Fence(int lenght) {
 //what is needed, because of the expectations and negative 'a' param of the parabola (it decreases after exceeds the vertex)  
 //Second side of the fence will be: y = l-2*x, where x is the first side.
 void Fence::optimizeForMaxArea() {
-    if (this->length < 3) {
-        throw std::invalid_argument("Length of the fence cannot be less than 3");
-    }
-
     if (this->length == 3) {
         this->sides.sideX = 1;
         this->sides.sideY = 1;
